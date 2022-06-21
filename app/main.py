@@ -4,6 +4,7 @@ import os
 
 import discord
 from dotenv import load_dotenv
+from utils import static_messages
 
 
 if __name__ == "__main__":
@@ -39,17 +40,12 @@ if __name__ == "__main__":
         
         # Help command
         if msgContent.startswith(help_cmd):
-            embed=discord.Embed(title="Welcome to the Yahoo Stock Bot!", description="Need help? Here are the commands!", color=0x0080ff)
-            embed.set_thumbnail(url="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/twitter/259/information_2139.png")
-            embed.add_field(name=help_cmd, value="Open this help menu again.", inline=False)
-            embed.add_field(name=author_cmd, value="Who developed this bot? Find out with this command!", inline=False)
+            embed = static_messages.help_message(discord)
             await msgChannel.send(embed=embed)
 
         # Author command
         if msgContent.startswith(author_cmd):
-            embed=discord.Embed(title="Author: Alex Canales", url="https://github.com/canaleal", description="Check out my GitHub for more projects!", color=0x0080ff)
-            embed.add_field(name="Powered by:", value="Python & Google Cloud", inline=True)
-            embed.set_footer(text="Let me know if you have any feedback! :)")
+            embed = static_messages.author_message(discord)
             await msgChannel.send(embed=embed)
 
         if message.content.startswith('$hello'):
