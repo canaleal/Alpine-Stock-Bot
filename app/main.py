@@ -10,6 +10,7 @@ from utils import static_messages
 if __name__ == "__main__":
     
     prefix = "$"
+    ping_cmd = prefix + "ping"
     help_cmd = prefix + "help"
     author_cmd = prefix + "author"
     
@@ -38,6 +39,9 @@ if __name__ == "__main__":
         msgContent = message.content
         msgChannel = message.channel
         
+        if msgContent.startswith(ping_cmd):
+            await msgChannel.send("Ping: {}ms".format(round(client.latency * 1000)))
+  
         # Help command
         if msgContent.startswith(help_cmd):
             embed = static_messages.help_message(discord)
