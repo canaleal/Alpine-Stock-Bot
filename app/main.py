@@ -5,6 +5,7 @@ import os
 import discord
 from dotenv import load_dotenv
 from utils import static_messages
+from services import fetch_stock
 
 
 if __name__ == "__main__":
@@ -30,6 +31,10 @@ if __name__ == "__main__":
             )
             
         print('We have logged in as {0.user}'.format(client))
+        
+        
+        fetch_object = fetch_stock.FetchStock()
+        print(fetch_object.get_stock_data("cts.to").get_meta_data())
 
     @client.event
     async def on_message(message):
