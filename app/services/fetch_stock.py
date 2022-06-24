@@ -10,6 +10,10 @@ class FetchStock:
         self.closing_tag = "&interval=5min&apikey=" + os.getenv('VANTAGE_API_KEY')
         
     def get_stock_data(self, symbol):
-        response = requests.get(self.url + symbol + self.closing_tag)
-        data = json.loads(response.text)
-        return VantageStock(data['Meta Data'], data['Time Series (Daily)'])
+        try:
+            response = requests.get(self.url + symbol + self.closing_tag)
+            data = json.loads(response.text)
+            return VantageStock(data["Meta Data"], data['Time Series (Daily)'])
+        except Exception as e:
+            return e
+            
