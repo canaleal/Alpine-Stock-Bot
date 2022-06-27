@@ -2,7 +2,7 @@
 class VantageStock:
     def __init__ (self, meta_data, time_series_daily):
         self.meta_data = meta_data
-        self.time_series_daily = time_series_daily
+        self.time_series_daily = list(time_series_daily.items())
         
     def get_meta_data(self):
         return self.meta_data
