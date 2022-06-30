@@ -17,7 +17,8 @@ CREATE TABLE IF NOT EXISTS pageinfo
         ON DELETE NO ACTION
 );
 
-CREATE TABLE pageinfoelement(
+CREATE TABLE IF NOT EXISTS pageinfoelement
+(
     page_element_id serial,
     page_id integer NOT NULL,
     element_code char(1) NOT NULL,
