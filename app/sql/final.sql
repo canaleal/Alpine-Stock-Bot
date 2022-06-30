@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS pageinfoelement
     created_on date NOT NULL,
     updated_by integer NULL,
     updated_on date NULL,
-    CONSTRAINT pageinfoelement_pkey PRIMARY KEY (page_id),
+    CONSTRAINT pageinfoelement_pkey PRIMARY KEY (page_element_id),
     CONSTRAINT fk_page_id FOREIGN KEY (page_id)
         REFERENCES public.pageinfo (page_id) MATCH SIMPLE,
     CONSTRAINT fk_created_by FOREIGN KEY (created_by)
