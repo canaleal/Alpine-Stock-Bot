@@ -14,3 +14,7 @@ class VantageStock:
     def get_first_time_series_string(self):
         first_element = list(self.time_series_daily)[0]
         return str(first_element)
+    
+    def get_last_time_series_string(self):
+        last_element = list(self.time_series_daily)[-1]
+        return str(last_element)

@@ -20,6 +20,7 @@ if __name__ == "__main__":
     prefix = "$"
     ping_cmd = prefix + "ping"
     stockCmd = prefix + "stock"
+    stockListCmd = prefix + "stocklist"
     help_cmd = prefix + "help"
     author_cmd = prefix + "author"
 
@@ -49,20 +50,33 @@ if __name__ == "__main__":
 
         if msgContent.startswith(ping_cmd):
             await msgChannel.send("Ping: {}ms".format(round(client.latency * 1000)))
-            
+
         elif msgContent.startswith(stockCmd):
             userMsg = filter_string.get_second_word_from_string(msgContent)
             if len(userMsg) > 1:
-               
-                stock = get_stock(userMsg)    
+
+                stock = get_stock(userMsg)
                 if isinstance(stock, str):
                     await msgChannel.send(stock)
-                else: 
-                    embed = dynamic_messages.stock_list_message(discord, stock) if msgContent.endswith("list") else dynamic_messages.stock_message(discord, stock) 
+                else:
+                    embed = dynamic_messages.stock_message(discord, stock)
                     await msgChannel.send(embed=embed)
             else:
                 await msgChannel.send("Please enter a stock symbol!\nExample: `{} CTS.TO`".format(stockCmd))
-  
+
+        elif msgContent.startswith(stockListCmd):
+            userMsg = filter_string.get_second_word_from_string(msgContent)
+            if len(userMsg) > 1:
+
+                stock = get_stock(userMsg)
+                if isinstance(stock, str):
+                    await msgChannel.send(stock)
+                else:
+                    embed = dynamic_messages.stock_list_message(discord, stock)
+                    await msgChannel.send(embed=embed)
+            else:
+                await msgChannel.send("Please enter a stock symbol!\nExample: `{} CTS.TO`".format(stockCmd))
+
         # Help command
         elif msgContent.startswith(help_cmd):
             embed = static_messages.help_message(discord)
