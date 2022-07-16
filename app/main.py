@@ -17,6 +17,7 @@ def get_stock(userMsg):
 
 if __name__ == "__main__":
 
+    # Utility variables used to load the data
     prefix = "$"
     ping_cmd = prefix + "ping"
     stockCmd = prefix + "stock"
