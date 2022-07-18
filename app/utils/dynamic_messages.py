@@ -40,10 +40,13 @@ def stock_message(discord, vantage_stock):
     return embed
 
 def stock_list_message(discord, vantage_stock):
-    stock_information = vantage_stock.meta_data['1. Information']
-    stock_symbol = f"{vantage_stock.meta_data['2. Symbol']}" 
-    embed=discord.Embed(title=stock_symbol, description=stock_information, color=0x0080ff)
-    for i in range(0,3):
-        embed = stock_string_package(i, vantage_stock, embed)
-    
-    return embed
+    try:
+        stock_information = vantage_stock.meta_data['1. Information']
+        stock_symbol = f"{vantage_stock.meta_data['2. Symbol']}" 
+        embed=discord.Embed(title=stock_symbol, description=stock_information, color=0x0080ff)
+        for i in range(0,3):
+            embed = stock_string_package(i, vantage_stock, embed)
+        
+        return embed
+    except:
+        return embed
